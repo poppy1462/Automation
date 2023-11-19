@@ -9,7 +9,7 @@ def guess_numbers():
         user_number = input("Enter the number:\n")
         if int(user_number) < my_num:
             print("The value is too low")
-            if int(user_number) > my_num:
+        elif int(user_number) > my_num:
                 print("The number is too high")
         else:
             print("You guessed correctly")
