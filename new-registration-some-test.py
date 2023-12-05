@@ -6,6 +6,9 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 
+#import Select module
+from selenium.webdriver.support.select import Select
+
 #opening Chrome browser and opening the Brain Bucket URL
 driver = webdriver.Chrome(executable_path='../../drivers/chromedriver')
 driver.get("https://cleveronly.com/brainbucket/index.php?route=account/login")
@@ -124,21 +127,16 @@ postcode_input = driver.find_element_by_id("input-postcode")
 postcode_input.clear()
 postcode_input.send_keys("60661")
 
-#Country
-country_field = driver.find_element_by_xpath("//fieldset[2]/div[6]")
-country_field_class = country_field.get_attribute("class")
-assert "required" in country_field_class
-country_select = driver.find_element_by_id("input-country")
-country_select.click()
-country_select.send_keys('Kazakhstan')
+#Select Country
+country_dropdown = driver.find_element_by_id("input-country")
+country_dropdown_select = Select(country_dropdown)
+country_dropdown_select.select_by_visible_text("United States")
 
-#Region/State
-zone_field = driver.find_element_by_xpath("//fieldset[2]/div[7]")
-zone_field_class = zone_field.get_attribute("class")
-assert "required" in zone_field_class
-zone_select = driver.find_element_by_id("input-zone")
-zone_select.click()
-zone_select.send_keys('Almaty')
+#Select Region/State
+zone_dropdown = driver.find_element_by_id("input-zone")
+zone_dropdown_select = Select(zone_dropdown)
+zone_dropdown_select.select_by_visible_text("Illinois")
+
 
 #Password
 password_field = driver.find_element_by_xpath("//fieldset[3]/div[1]")
@@ -156,7 +154,23 @@ confirm_input = driver.find_element_by_id("input-confirm")
 confirm_input.clear()
 confirm_input.send_keys("Qwerty123")
 
+#subscribe to newsletter
+subscribe_btn = driver.find_element_by_xpath("//input[@name='newsletter' and @value='1']")
+if not subscribe_btn.is_selected():
+    subscribe_btn.click()
 
+#Privacy policy agreement
+privacy_btn = driver.find_element_by_xpath("//input[@name='agree' and @value='1']")
+if not privacy_btn.is_selected():
+    privacy_btn.click()
+
+#land on the Register page in the "My Account" dropdown
+account_btn = driver.find_element_by_xpath("//a[@title='My Account']")
+account_btn.click()
+
+wd_wait.until(EC.visibility_of_element_located((By.XPATH, "//*[@class='dropdown-menu dropdown-menu-right']")))
+login_option = driver.find_element_by_xpath("//*[@class='dropdown-menu dropdown-menu-right']/li[2]")
+login_option.click()
 
 #to close the browser
 #driver.quit()
