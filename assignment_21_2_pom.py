@@ -17,6 +17,7 @@ def test_registration_through_dropdown():
     browser = Browser(URL)
     driver = browser.get_driver()
 
+    # test Login functionality
     login_page = LoginPage(browser)
     login_page.email_input(email='test@gmail.com')
     login_page.password_input(password='qwerty123567')
@@ -57,6 +58,7 @@ def test_registration_from_right_menu():
     browser = Browser(URL)
     driver = browser.get_driver()
 
+    # test Login functionality
     login_page = LoginPage(browser)
     login_page.email_input(email='test@gmail.com')
     login_page.password_input(password='qwerty123567')
