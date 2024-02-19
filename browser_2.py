@@ -13,8 +13,9 @@ class Browser:
         if browser_name.lower() == "firefox":
             try:
                 options = webdriver.FirefoxOptions()
-                options.add_argument("--width=600") #to open in mobile size screen
-                options.add_argument("--height=800")
+                if screen_width is not None and screen_height is not None:
+                    options.add_argument(f"--width={screen_width}") #to open in mobile size screen
+                    options.add_argument(f"--height={screen_height}")
                 #options.add_argument("--disable-extensions") - to disable extensions
 
                 # firefox_profile = webdriver.FirefoxProfile()- to disable popup blocking
