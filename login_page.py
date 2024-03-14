@@ -9,6 +9,10 @@ class LoginPage:
         self.header = Header(browser)
         self.right_menu = RightMenu(browser)
         self.continue_btn = Element(browser, By.XPATH, "//a[contains(text(), 'Continue')]")
+        self.new_customer_title = Element(browser, By.XPATH, "//h2[contains(text(), 'New Customer')]")
+        self.returning_customer_title = Element(browser, By.XPATH, "//h2[contains(text(), 'Returning Customer')]")
+        self.email_not_registered_title = Element(browser, By.XPATH,)
+        self.error_message = Element(browser, By.XPATH, "//div[@class='alert alert-danger']")
         self.email_input_field = Element(browser, By.ID, 'input-email')
         self.password_input_field = Element(browser, By.ID, 'input-password')
         self.login_btn = Element(browser, By.XPATH, "//input[@value='Login']")
@@ -33,3 +37,9 @@ class LoginPage:
     def click_login_btn(self):
         self.login_btn.wait_until_visible()
         self.login_btn.click()
+
+    def get_new_customer_title(self):
+        return self.new_customer_title.get_text()
+
+    def get_returning_customer_title(self):
+        return self.returning_customer_title.get_text()

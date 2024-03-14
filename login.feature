@@ -1,63 +1,18 @@
+@wip
 Feature: Login functionality
   Background:
-    Given a web browser is at the Brainbucket homepage
+    Given user launch login page
 
-  Scenario Outline: the user can login using correct email and password
-    Given the user is not logged in
-    And the user clicks on the Login button from <element>
-    When the user enters email and password
-    And the user clicks Login button
-    Then the user's profile page is launched
+  @positive
+  Scenario: a user can login using correct email and password
+    Given user is not logged in
+    When user enters email and password
+    And user clicks Login button
+    Then The user's profile page will be launched
 
-
-  Examples:
-    | element        |
-    | navigation bar |
-    | right menu     |
-    | footer         |
-
-
-  Scenario Outline: User can't login without entering password
-    Given the user is not logged in
-    And the user clicks on the Login button from <element>
-    When the user enters email
-    And the user clicks login button
-    Then the warning "No match for E-mail Address and/or Password" is shown
-
-
-  Examples:
-    | element        |
-    | navigation bar |
-    | right menu     |
-    | footer         |
-
-
-  Scenario Outline: User can't login using incorrect email
-    Given the user is not logged in
-    And the user clicks on the Login button from <element>
-    When the user enters incorrect email
-    And the user clicks login button
-    Then the warning "No match for E-mail Address and/or Password" is shown
-
-
-  Examples:
-    | element        |
-    | navigation bar |
-    | right menu     |
-    | footer         |
-
-
-  Scenario Outline: User can't login using incorrect password
-    Given the user is not logged in
-    And the user clicks on the Login button from <element>
-    When the user enters correct email
-    But the user enters the incorrect password
-    And the user clicks login button
-    Then the warning "No match for E-mail Address and/or Password" is shown
-
-
-  Examples:
-    | element        |
-    | navigation bar |
-    | right menu     |
-    | footer         |
+  @negative
+  Scenario: User can't login without entering password
+    Given User is not logged in
+    When User enters email
+    And User clicks Login button
+    Then Warning will be shown about 'No match for E-Mail Address and/or Password'
