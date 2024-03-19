@@ -1,0 +1,69 @@
+<testsuite name="registration.Registration functionality" tests="3" errors="0" failures="1" skipped="0" time="6.42765" timestamp="2024-03-18T22:59:24.366331" hostname="Anastasias-MBP.attlocal.net"><testcase classname="registration.Registration functionality" name="User fills out all the fields" status="failed" time="2.189136"><failure type="AssertionError" message="">
+<![CDATA[
+Failing step: Then Account created title is shown ... failed in 0.082s
+Location: BrainBucketTesting/BDDBehave/registrationtests/registration.feature:10
+Traceback (most recent call last):
+  File "/Users/anastasiatskhay/Desktop/PythonProjects/lib/python3.9/site-packages/behave/model.py", line 1329, in run
+    match.run(runner.context)
+  File "/Users/anastasiatskhay/Desktop/PythonProjects/lib/python3.9/site-packages/behave/matchers.py", line 98, in run
+    self.func(context, *args, **kwargs)
+  File "BrainBucketTesting/BDDBehave/registrationtests/steps/registrationsteps.py", line 83, in verify_account_created_title
+    assert registration_page.get_form_title() == "Your Account Has Been Created!"
+AssertionError
+]]>
+</failure><system-out>
+<![CDATA[
+@scenario.begin
+
+  @positive
+  Scenario: User fills out all the fields
+    When User fills out all the fields ... passed in 1.175s
+    And User chooses United States from the Country dropdown and Illinois from the Region/State dropdown ... passed in 0.346s
+    And User clicks the checkmark ... passed in 0.135s
+    And User clicks the Continue button ... passed in 0.450s
+    Then Account created title is shown ... failed in 0.082s
+
+@scenario.end
+--------------------------------------------------------------------------------
+]]>
+</system-out></testcase><testcase classname="registration.Registration functionality" name="User fills out all the fields except the Address section" status="passed" time="2.085239"><system-out>
+<![CDATA[
+@scenario.begin
+
+  @negative
+  Scenario: User fills out all the fields except the Address section
+    When User fills out all the fields except the Address section ... passed in 1.049s
+    And User chooses United States from the Country dropdown and Illinois from the Region/State dropdown ... passed in 0.386s
+    And User clicks the checkmark ... passed in 0.131s
+    And User clicks the Continue button ... passed in 0.436s
+    Then Address alert is shown ... passed in 0.083s
+
+@scenario.end
+--------------------------------------------------------------------------------
+]]>
+</system-out></testcase><testcase classname="registration.Registration functionality" name="User has an existing account" status="passed" time="2.153275"><system-out>
+<![CDATA[
+@scenario.begin
+
+  @negative @skip
+  Scenario: User has an existing account
+    When Existing user fills out all the fields ... passed in 1.152s
+    And User chooses United States from the Country dropdown and Illinois from the Region/State dropdown ... passed in 0.355s
+    And User clicks the checkmark ... passed in 0.126s
+    And User clicks the Continue button ... passed in 0.439s
+    Then Existing account alert is shown ... passed in 0.081s
+      """
+      When you select scenarios by one tag:
+      behave **/registration.feature --tags=@wip
+      When you select scenarios that have one or another tag:
+      behave **/registration.feature --tags=@skip,@positive
+      When you select scenarios that have 2 tags:
+      behave **/registration.feature --tags=@negative --tags=@skip
+      When you disable scenarios that have a specific tag:
+      behave **/registration.feature --tags=~@negative
+      """
+
+@scenario.end
+--------------------------------------------------------------------------------
+]]>
+</system-out></testcase></testsuite>
